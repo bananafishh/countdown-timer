@@ -26,6 +26,6 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     '@stylistic/semi': ['error', 'always'],
-    '@stylistic/max-len': ['error', { 'code': 80 }],
+    '@stylistic/max-len': ['error', { 'code': 120 }],
   },
 };
