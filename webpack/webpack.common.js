@@ -32,6 +32,13 @@ module.exports = {
         test: /\.svg$/,
         type: 'asset/inline',
       },
+      {
+        test: /\.woff2$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[contenthash][ext]',
+        },
+      },
     ],
   },
   plugins: [
