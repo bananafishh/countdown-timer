@@ -1,3 +1,9 @@
+const stylistic = require('@stylistic/eslint-plugin');
+
+const customized = stylistic.configs.customize({
+  semi: true,
+});
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,11 +27,11 @@ module.exports = {
     'plugin:@stylistic/recommended-extends',
   ],
   rules: {
+    ...customized.rules,
     '@typescript-eslint/no-var-requires': 'off',
     'react/prop-types': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    '@stylistic/semi': ['error', 'always'],
     '@stylistic/max-len': ['error', { 'code': 120 }],
   },
 };
