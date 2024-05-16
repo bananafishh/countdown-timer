@@ -1,4 +1,30 @@
+@font-face {
+  font-family: "Share Tech";
+  src: url('../../assets/fonts/share-tech-regular.woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
-  color: #fff;
-  background-color: #24475b;
+  margin: 0;
+  font-family: "Share Tech";
+  color: #fefded;
+  background-color: #222831;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 29px;
+  line-height: 33px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
