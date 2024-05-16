@@ -1,26 +1,38 @@
 import { useEffect, useState } from 'react';
+import { getSeason } from '../../helpers/get-season';
 
 import { Timer } from '../timer/timer';
-import { MONTH } from '../../constants/app-constants';
-import './app.scss';
+import { MONTH, SEASON } from '../../constants/app-constants';
+
+const MONTH_TO_TEXT = {
+  [SEASON.WINTER]: 'Spring is coming',
+  [SEASON.SPRING]: 'Summer is coming',
+  [SEASON.SUMMER]: 'Autumn is coming',
+  [SEASON.AUTUMN]: 'Winter is coming',
+};
 
 export const App = () => {
   const now = new Date();
   const currentMonth = now.getMonth();
+  const currentSeason = getSeason(currentMonth);
   const currentYear = now.getFullYear();
-
-  const areWeWaitingForSummer = currentMonth <= MONTH.MAY || currentMonth === MONTH.DECEMBER;
 
   const calculateDeadline = () => {
     switch (true) {
-      case currentMonth <= MONTH.MAY:
+      case currentMonth === MONTH.DECEMBER:
+        return `${currentYear + 1}-03-01`;
+
+      case currentSeason === SEASON.WINTER:
+        return `${currentYear}-03-01`;
+
+      case currentSeason === SEASON.SPRING:
         return `${currentYear}-06-01`;
 
-      case currentMonth >= MONTH.JUNE && currentMonth <= MONTH.NOVEMBER:
-        return `${currentYear}-12-01`;
+      case currentSeason === SEASON.SUMMER:
+        return `${currentYear}-09-01`;
 
-      case currentMonth === MONTH.DECEMBER:
-        return `${currentYear + 1}-06-01`;
+      case currentSeason === SEASON.AUTUMN:
+        return `${currentYear}-12-01`;
 
       default:
         return '';
@@ -64,14 +76,12 @@ export const App = () => {
   });
 
   return (
-    <main>
-      <h1>
-        {isTimeUp()
-          ? `${areWeWaitingForSummer ? 'Summer' : 'Winter'} is here!`
-          : `${areWeWaitingForSummer ? 'Summer' : 'Winter'} is coming in`}
-      </h1>
+    <main className="app">
+      <div className="app__inner">
+        <h1>{MONTH_TO_TEXT[currentSeason]}</h1>
 
-      <Timer time={timeLeft} />
+        <Timer time={timeLeft} />
+      </div>
     </main>
   );
 };
